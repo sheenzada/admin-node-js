@@ -1,14 +1,37 @@
+// models/Booking.js
 const mongoose = require('mongoose');
 
-const bookingSchema = mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  type: { type: String, enum: ['hotel', 'car', 'package'], required: true },
-  itemId: { type: mongoose.Schema.Types.ObjectId, required: true, refPath: 'type' }, // dynamic ref
-  itemName: String, // denormalized for quick display
-  date: { type: Date, default: Date.now },
-  status: { type: String, enum: ['Confirmed', 'Pending', 'Cancelled'], default: 'Pending' },
-  createdAt: { type: Date, default: Date.now },
+const bookingSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  service: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ['pending', 'confirmed', 'cancelled', 'completed'],
+    default: 'pending',
+  },
+  notes: {
+    type: String,
+    default: '',
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-// Example: if type='hotel', itemId refers to Hotel model
 module.exports = mongoose.model('Booking', bookingSchema);
