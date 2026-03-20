@@ -1,5 +1,10 @@
+// const mongoose = require('mongoose');
+// const bcrypt = require('bcryptjs');
+
+
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const userSchema = new mongoose.Schema({ ... });
+module.exports = mongoose.model('User', userSchema);
 
 const userSchema = mongoose.Schema({
   name: { type: String, required: true },
