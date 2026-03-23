@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// Example route
 router.get('/', (req, res) => {
-  res.send('Bookings route');
+  res.json({ message: 'Package routes are not yet implemented' });
 });
 
-module.exports = router;   // ← this line is essential
+module.exports = router;
