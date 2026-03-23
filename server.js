@@ -10,6 +10,10 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // body parser
 
+app.get('/', (req, res) => {
+  res.send('Welcome to Admin Panel API');
+});
+
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
@@ -18,10 +22,8 @@ app.use('/api/bookings', require('./routes/bookingRoutes'));
 app.use('/api/hotels', require('./routes/hotelRoutes'));
 app.use('/api/cars', require('./routes/carRoutes'));
 app.use('/api/packages', require('./routes/packageRoutes'));
-app.use('/api/reviews', require('./routes/reviewRoutes'));
-app.use('/api/contacts', require('./routes/contactRoutes'));
 
-// Error handling middleware
+// // Error handling middleware
 app.use(require('./middleware/errorMiddleware'));
 
 const PORT = process.env.PORT || 5000;
